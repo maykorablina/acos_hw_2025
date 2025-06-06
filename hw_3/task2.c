@@ -233,7 +233,7 @@ void *realloc(void *ptr, size_t size) {
     if (asize < old_size) {
         size_t rsize = old_size - asize;
         if (rsize >= DSIZE) {
-            PUT(hdr, asize | 1);
+            PUT(hdr, asize | 1); // writes data into the header to the size of need and least significant bit is set to 1
             PUT(PTR_ADD(hdr, asize - WSIZE), asize | 1);
 
             void *new_hdr = PTR_ADD(hdr, asize);
